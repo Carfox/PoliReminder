@@ -1,20 +1,14 @@
-from PIL import Image, ImageDraw, ImageFont
-import os
-image1 = Image.open("img/numbers/one.png")
-image2 = Image.open("img/numbers/two.png")
+from PIL import Image, ImageDraw
+w = 1280
+h = 720
+# Crear una imagen en blanco de 300x300 pixeles
+img = Image.new("RGB", (w, h), "white")
 
-ancho1, alto1 = image1.size
-ancho2, alto2 = image2.size
+# Crear un objeto ImageDraw
+draw = ImageDraw.Draw(img)
 
-        # Crea una nueva imagen con el tamaño adecuado para ambas imágenes juntas
-ancho_total = ancho1 + ancho2 + 10
-alto_total = max(alto1, alto2)
-imagen_final = Image.new("RGB", (ancho_total, alto_total), "white")
+# Dibujar un rectángulo amarillo con bordes redondos de 10 pixeles de radio
+draw.rounded_rectangle([(0.10*w, 0.10*h),(0.9*w, 0.9*h)], 10, "yellow", "black")
 
-        # Combina las imágenes
-imagen_final.paste(image1, (0, 0))
-imagen_final.paste(image2, (ancho1+10, 0))
-
-        # Guarda la imagen resultante
-        #route_output_img = "answer"
-imagen_final.save(os.path.basename("resultado.png"))
+# Mostrar la imagen
+img.show()
